@@ -3,3 +3,4 @@
 [20260419 11:59:00] Added -w $WORKING_DIR to the docs/goals.md runtime example.
 [20260419 12:01:00] Removed redundant WORKING_DIR environment variable from the docs/goals.md runtime example.
 [20260419 12:08:00] Updated v1 goals to use a fixed in-container home path without requiring a real in-container user account.
+[20260419 12:14:00] Clarified that the image should start Claude Code directly by default instead of opening a shell.

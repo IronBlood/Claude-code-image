@@ -28,6 +28,10 @@ In this project, “isolated environment” means Claude Code should only be abl
 
 For version 1, no additional host paths or environment variables are required beyond the project directory, `~/.claude`, `~/.claude.json`, `ANTHROPIC_BASE_URL`, and `ANTHROPIC_AUTH_TOKEN`.
 
+The image is intended to start Claude Code directly by default. It does not need to open an interactive shell as its primary behavior.
+
+The runtime example in this document intentionally focuses on the required mounts, working directory, user mapping, and environment variables. It does not need to show the final command invocation in order to express those requirements.
+
 When a user runs this image, the following files or folders shall be mapped into the container. Consider the following commands as dummy code:
 
 ```bash
