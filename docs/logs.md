@@ -19,3 +19,4 @@
 [20260419 13:21:00] Added a build-time Claude verification step with which and version checks and marked the task complete.
 [20260419 13:31:00] Added a manual GitHub Actions workflow to build the image and verify Claude on both default and numeric runtime users.
 [20260419 13:42:00] Updated goals with the non-interactive installer result and required global PATH exposure for claude, then added a global symlink in Dockerfile.
+[20260419 14:02:00] Updated goals and tasks to split the project into a shared cloud-built base image and a user-specific runtime image.
