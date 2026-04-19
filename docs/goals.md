@@ -30,11 +30,14 @@ When a user runs this image, the following files or folders shall be mapped into
 
 ```bash
 export WORKING_DIR=/path/to/working/dir
+export CONTAINER_HOME=/home/claude
 
 docker run --rm -it \
   --user $(id -u):$(id -g) \
   -v $WORKING_DIR:$WORKING_DIR \
-  -v /path/to/.claude:~/.claude \
-  -v /path/to/.claude.json:~/.claude.json \
-  -e WORKING_DIR=$WORKING_DIR
+  -v /path/to/.claude:$CONTAINER_HOME/.claude \
+  -v /path/to/.claude.json:$CONTAINER_HOME/.claude.json \
+  -e WORKING_DIR=$WORKING_DIR \
+  -e ANTHROPIC_BASE_URL=http://host-or-gateway:port \
+  -e ANTHROPIC_AUTH_TOKEN=your-token
 ```
