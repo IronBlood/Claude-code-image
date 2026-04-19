@@ -34,6 +34,7 @@ export CONTAINER_HOME=/home/claude
 
 docker run --rm -it \
   --user $(id -u):$(id -g) \
+  -w $WORKING_DIR \
   -v $WORKING_DIR:$WORKING_DIR \
   -v /path/to/.claude:$CONTAINER_HOME/.claude \
   -v /path/to/.claude.json:$CONTAINER_HOME/.claude.json \
