@@ -13,7 +13,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
 
 RUN curl -fsSL https://claude.ai/install.sh | bash
 
-RUN ln -sf /root/.local/bin/claude /usr/local/bin/claude
+RUN mkdir -p /opt/claude-code/bin \
+  && install -m 0755 "$(readlink -f /root/.local/bin/claude)" /opt/claude-code/bin/claude \
+  && printf '%s\n' \
+    '#!/bin/sh' \
+    'export DISABLE_AUTOUPDATER=1' \
+    'exec /opt/claude-code/bin/claude "$@"' \
+    > /usr/local/bin/claude \
+  && chmod 0755 /usr/local/bin/claude
 
 RUN which claude \
   && claude --version
