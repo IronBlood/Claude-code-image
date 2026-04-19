@@ -14,7 +14,11 @@ The preferred implementation is to use `debian:bookworm-slim` as the base image 
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
+The official installer has been confirmed to run in a non-interactive image build environment.
+
 If that setup path does not work reliably in the image build, an acceptable fallback is to install Claude Code with npm instead. In that fallback case, it is acceptable to switch the base image from `debian:bookworm-slim` to a Node-based image in order to simplify the Node.js/npm setup.
+
+Because the official installer places the `claude` binary under `$HOME/.local/bin` by default, the image shall make `claude` available on a global `PATH` for the runtime user instead of relying only on the build-time home directory layout.
 
 The container must be run with `--user $(id -u):$(id -g)`. This is a required behavior, not an optional optimization, because files created or modified in bind-mounted directories must remain owned by the current host user without requiring later `chown` operations on the host.
 
