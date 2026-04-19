@@ -8,3 +8,4 @@
 [20260419 12:21:00] Expanded docs/tasks.md with initial implementation tasks derived from the clarified v1 goals.
 [20260419 12:27:00] Set HOME=/home/claude in Dockerfile and marked the first runtime-home task complete.
 [20260419 12:30:00] Added a Dockerfile comment to keep the fixed HOME path aligned with the in-container config mount target.
+[20260419 12:33:00] Created the fixed HOME directory path in Dockerfile without adding a real in-container user account.
