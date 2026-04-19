@@ -5,3 +5,4 @@
 [20260419 12:08:00] Updated v1 goals to use a fixed in-container home path without requiring a real in-container user account.
 [20260419 12:14:00] Clarified that the image should start Claude Code directly by default instead of opening a shell.
 [20260419 12:17:00] Clarified that the image should set its fixed HOME path internally rather than require a runtime HOME environment variable.
+[20260419 12:21:00] Expanded docs/tasks.md with initial implementation tasks derived from the clarified v1 goals.
