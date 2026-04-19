@@ -22,10 +22,16 @@
 - [ ] Add a dedicated Dockerfile for the shared base image and move the shared installation steps into it.
 - [ ] Add or update CI to build the shared base image and publish it to GHCR.
 
-### User-Specific Runtime Image
+### User Image Template
 
-- [ ] Make the user-facing Dockerfile use the published shared base image.
-- [ ] Set a fixed in-container home directory path and export it as `HOME` in the user-facing image.
+- [ ] Add a committed user-image template Dockerfile that builds on the published shared base image.
+- [ ] Document or encode the base-image reference in the user-image template so it can be adjusted per user.
+
+### Private User-Specific Runtime Image
+
+- [ ] Create the private user-facing Dockerfile from the committed template.
+- [ ] Make the private user-facing Dockerfile use the published shared base image.
+- [ ] Set a fixed in-container home directory path and export it as `HOME` in the private user-facing image.
 - [ ] Ensure the fixed in-container home directory path exists without requiring a real in-container user account.
 - [ ] Set the final user-facing image default behavior to start Claude Code directly instead of opening a shell.
 - [ ] Make the image compatible with running under `--user $(id -u):$(id -g)`.

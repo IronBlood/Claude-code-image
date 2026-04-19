@@ -24,6 +24,8 @@ For version 1, it is acceptable to deliver this project as two Docker build stag
 
 The shared base image is intended to be buildable in CI and may be published to a container registry such as GHCR. The user-specific image may then use that published base image to avoid rerunning the Claude installer during local development unless the shared base contents change.
 
+This repository may track the shared base-image Dockerfile and a user-image template Dockerfile, while the final user-specific Dockerfile used by an individual contributor may remain private and outside version control.
+
 The container must be run with `--user $(id -u):$(id -g)`. This is a required behavior, not an optional optimization, because files created or modified in bind-mounted directories must remain owned by the current host user without requiring later `chown` operations on the host.
 
 The project working directory shall be bind-mounted into the container at the same absolute path that it uses on the host system. The goal is for Claude Code to observe and record the real host paths rather than rewritten container-only paths such as `/workspace`. This is required because Claude-related configuration may keep path-based records, and those records should stay understandable and stable when inspected from the host.
@@ -38,7 +40,7 @@ In this project, “isolated environment” means Claude Code should only be abl
 
 For version 1, no additional host paths or environment variables are required beyond the project directory, `~/.claude`, `~/.claude.json`, `ANTHROPIC_BASE_URL`, and `ANTHROPIC_AUTH_TOKEN`.
 
-The final user-facing image is intended to start Claude Code directly by default. It does not need to open an interactive shell as its primary behavior.
+The final user-facing image is intended to start Claude Code directly by default. It does not need to open an interactive shell as its primary behavior. This requirement applies to the real user-specific image, whether it is tracked in the repository or kept private.
 
 The runtime example in this document intentionally focuses on the required mounts, working directory, user mapping, and environment variables. It does not need to show the final command invocation in order to express those requirements.
 
