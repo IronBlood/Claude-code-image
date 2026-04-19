@@ -14,7 +14,7 @@
 - [x] Use `debian:bookworm-slim` as the base image.
 - [x] Set a fixed in-container home directory path and export it as `HOME` in the image.
 - [x] Ensure the fixed in-container home directory path exists without requiring a real in-container user account.
-- [ ] Install the Debian runtime utilities required by version 1: `bash`, `git`, `sed`, `awk`, and `ripgrep`.
+- [x] Install the Debian runtime utilities required by version 1: `bash`, `git`, `sed`, `awk`, and `ripgrep`.
 - [ ] Install Claude Code with the official setup method during image build.
 - [ ] Set the image default behavior to start Claude Code directly instead of opening a shell.
 - [ ] Make the image compatible with running under `--user $(id -u):$(id -g)`.
