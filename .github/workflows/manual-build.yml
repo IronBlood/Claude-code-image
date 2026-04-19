@@ -38,10 +38,11 @@ jobs:
         run: docker push "$BASE_IMAGE"
 
       - name: Build user-facing image
-        run: docker build \
-          --build-arg BASE_IMAGE="$BASE_IMAGE" \
-          --build-arg CONTAINER_HOME="$CONTAINER_HOME" \
-          -t "$RUNTIME_IMAGE" .
+        run: |
+          docker build \
+            --build-arg BASE_IMAGE="$BASE_IMAGE" \
+            --build-arg CONTAINER_HOME="$CONTAINER_HOME" \
+            -t "$RUNTIME_IMAGE" .
 
       - name: Check Claude on build default user
         run: |
