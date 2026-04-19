@@ -20,7 +20,7 @@
 - [x] Verify the Claude Code installation during image build with `which claude` and `claude --version`.
 - [x] Confirm that the official Claude Code installer works reliably and non-interactively in the image build.
 - [x] Add a dedicated Dockerfile for the shared base image and move the shared installation steps into it.
-- [ ] Add or update CI to build the shared base image and publish it to GHCR.
+- [x] Add or update CI to build the shared base image and publish it to GHCR.
 
 ### User Image Template
 

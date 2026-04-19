@@ -23,3 +23,4 @@
 [20260419 14:18:00] Refined goals and tasks so the repo tracks a shared base image plus a user-image template, while the final user-specific Dockerfile may remain private.
 [20260419 14:29:00] Split the committed Dockerfiles into Dockerfile.base for the shared Claude image and a thin template Dockerfile that consumes a configurable base image.
 [20260419 15:16:00] Updated the shared base-image goals to describe the working global claude wrapper layout and shared launcher behavior.
+[20260419 15:19:00] Marked the GHCR publishing task complete after the shared base image was built and pushed successfully from CI.
