@@ -4,7 +4,9 @@
 
 This project builds a docker image to run Claude Code in an isolated environment with the same user id and group id of the current user from the host system, so that ownership of newly created files and folders still belongs to the current user.
 
-In the first version, the image should stay minimal and only include the software required to run Claude Code. At minimum, the image shall contain the Claude Code CLI, support passing `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` into the container environment at runtime, and install `ripgrep` from the Debian package repository.
+In the first version, the image should stay minimal and only include the software required to run Claude Code. At minimum, the image shall contain the Claude Code CLI, support passing `ANTHROPIC_BASE_URL` and `ANTHROPIC_AUTH_TOKEN` into the container environment at runtime, and explicitly install the runtime utilities `bash`, `git`, `sed`, `awk`, and `ripgrep` from the Debian package repository.
+
+These utilities are part of the version 1 runtime contract and should be installed explicitly rather than assumed to be present in the base image.
 
 The preferred implementation is to use `debian:bookworm-slim` as the base image and install Claude Code with the official setup method:
 

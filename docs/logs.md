@@ -9,3 +9,5 @@
 [20260419 12:27:00] Set HOME=/home/claude in Dockerfile and marked the first runtime-home task complete.
 [20260419 12:30:00] Added a Dockerfile comment to keep the fixed HOME path aligned with the in-container config mount target.
 [20260419 12:33:00] Created the fixed HOME directory path in Dockerfile without adding a real in-container user account.
+[20260419 12:46:00] Reviewed the updated docs/tasks.md and confirmed it matches the current v1 goals and task split.
+[20260419 12:50:00] Updated docs/goals.md to define the explicit v1 runtime utility set: bash, git, sed, awk, and ripgrep.
