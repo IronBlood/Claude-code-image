@@ -17,3 +17,4 @@
 [20260419 13:12:00] Set the Docker image default command to start Claude Code directly and marked the startup-behavior task complete.
 [20260419 13:18:00] Added a separate task to verify Claude Code installation with which and version checks during image build.
 [20260419 13:21:00] Added a build-time Claude verification step with which and version checks and marked the task complete.
+[20260419 13:31:00] Added a manual GitHub Actions workflow to build the image and verify Claude on both default and numeric runtime users.

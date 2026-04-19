@@ -1,0 +1,25 @@
+name: Manual Docker Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t claude-code-image:ci .
+
+      - name: Check Claude on build default user
+        run: |
+          docker run --rm claude-code-image:ci which claude
+          docker run --rm claude-code-image:ci claude --version
+
+      - name: Check Claude with host-style UID and GID
+        run: |
+          docker run --rm --user 1001:1001 claude-code-image:ci which claude
+          docker run --rm --user 1001:1001 claude-code-image:ci claude --version
