@@ -12,7 +12,7 @@
 ## Task Lists
 
 - [x] Use `debian:bookworm-slim` as the base image.
-- [ ] Set a fixed in-container home directory path and export it as `HOME` in the image.
+- [x] Set a fixed in-container home directory path and export it as `HOME` in the image.
 - [ ] Ensure the fixed in-container home directory path exists without requiring a real in-container user account.
 - [ ] Install `ripgrep` from the Debian package repository.
 - [ ] Install the minimum Debian packages required to run the official Claude Code installer in the image build.
