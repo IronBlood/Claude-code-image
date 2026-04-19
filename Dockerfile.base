@@ -1,0 +1,19 @@
+FROM debian:bookworm-slim
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+  && apt-get install -y --no-install-recommends \
+    bash \
+    git \
+    sed \
+    gawk \
+    ripgrep \
+    ca-certificates \
+    curl \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN curl -fsSL https://claude.ai/install.sh | bash
+
+RUN ln -sf /root/.local/bin/claude /usr/local/bin/claude
+
+RUN which claude \
+  && claude --version

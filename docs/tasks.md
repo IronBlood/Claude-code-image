@@ -19,13 +19,13 @@
 - [x] Make the installed `claude` binary available on a global `PATH` instead of leaving it only under `$HOME/.local/bin`.
 - [x] Verify the Claude Code installation during image build with `which claude` and `claude --version`.
 - [x] Confirm that the official Claude Code installer works reliably and non-interactively in the image build.
-- [ ] Add a dedicated Dockerfile for the shared base image and move the shared installation steps into it.
+- [x] Add a dedicated Dockerfile for the shared base image and move the shared installation steps into it.
 - [ ] Add or update CI to build the shared base image and publish it to GHCR.
 
 ### User Image Template
 
-- [ ] Add a committed user-image template Dockerfile that builds on the published shared base image.
-- [ ] Document or encode the base-image reference in the user-image template so it can be adjusted per user.
+- [x] Add a committed user-image template Dockerfile that builds on the published shared base image.
+- [x] Document or encode the base-image reference in the user-image template so it can be adjusted per user.
 
 ### Private User-Specific Runtime Image
 

@@ -21,3 +21,4 @@
 [20260419 13:42:00] Updated goals with the non-interactive installer result and required global PATH exposure for claude, then added a global symlink in Dockerfile.
 [20260419 14:02:00] Updated goals and tasks to split the project into a shared cloud-built base image and a user-specific runtime image.
 [20260419 14:18:00] Refined goals and tasks so the repo tracks a shared base image plus a user-image template, while the final user-specific Dockerfile may remain private.
+[20260419 14:29:00] Split the committed Dockerfiles into Dockerfile.base for the shared Claude image and a thin template Dockerfile that consumes a configurable base image.

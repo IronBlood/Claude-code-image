@@ -3,23 +3,48 @@ name: Manual Docker Build
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
-  build:
+  build-base-and-runtime:
     runs-on: ubuntu-latest
+
+    env:
+      BASE_IMAGE: ghcr.io/${{ github.repository_owner }}/claude-code-image-base
+      CONTAINER_HOME: /home/claude
+      RUNTIME_IMAGE: claude-code-image:ci
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Build image
-        run: docker build -t claude-code-image:ci .
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build shared base image
+        run: docker build -f Dockerfile.base -t "$BASE_IMAGE" .
+
+      - name: Push shared base image
+        run: docker push "$BASE_IMAGE"
+
+      - name: Build user-facing image
+        run: docker build \
+          --build-arg BASE_IMAGE="$BASE_IMAGE" \
+          --build-arg CONTAINER_HOME="$CONTAINER_HOME" \
+          -t "$RUNTIME_IMAGE" .
 
       - name: Check Claude on build default user
         run: |
-          docker run --rm claude-code-image:ci which claude
-          docker run --rm claude-code-image:ci claude --version
+          docker run --rm "$RUNTIME_IMAGE" which claude
+          docker run --rm "$RUNTIME_IMAGE" claude --version
 
       - name: Check Claude with host-style UID and GID
         run: |
-          docker run --rm --user 1001:1001 claude-code-image:ci which claude
-          docker run --rm --user 1001:1001 claude-code-image:ci claude --version
+          docker run --rm --user 1001:1001 "$RUNTIME_IMAGE" which claude
+          docker run --rm --user 1001:1001 "$RUNTIME_IMAGE" claude --version
