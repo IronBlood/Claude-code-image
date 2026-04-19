@@ -32,6 +32,10 @@ The image is intended to start Claude Code directly by default. It does not need
 
 The runtime example in this document intentionally focuses on the required mounts, working directory, user mapping, and environment variables. It does not need to show the final command invocation in order to express those requirements.
 
+The image should define its fixed in-container home directory path internally. Users do not need to pass `HOME` as a runtime environment variable for version 1.
+
+The purpose of that fixed home path is to provide stable locations for `~/.claude` and `~/.claude.json` inside the container.
+
 When a user runs this image, the following files or folders shall be mapped into the container. Consider the following commands as dummy code:
 
 ```bash
