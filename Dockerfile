@@ -17,3 +17,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fsSL https://claude.ai/install.sh | bash
+
+RUN which claude \
+  && claude --version
+
+CMD ["claude"]

@@ -14,3 +14,6 @@
 [20260419 12:53:00] Updated docs/tasks.md to make the v1 runtime utility installation task explicit.
 [20260419 12:57:00] Installed the v1 runtime utilities in Dockerfile with a noninteractive apt-get step and marked the task complete.
 [20260419 13:04:00] Added the official Claude Code installer step to Dockerfile with curl and CA certificates and marked the install task complete.
+[20260419 13:12:00] Set the Docker image default command to start Claude Code directly and marked the startup-behavior task complete.
+[20260419 13:18:00] Added a separate task to verify Claude Code installation with which and version checks during image build.
+[20260419 13:21:00] Added a build-time Claude verification step with which and version checks and marked the task complete.

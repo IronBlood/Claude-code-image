@@ -16,7 +16,8 @@
 - [x] Ensure the fixed in-container home directory path exists without requiring a real in-container user account.
 - [x] Install the Debian runtime utilities required by version 1: `bash`, `git`, `sed`, `awk`, and `ripgrep`.
 - [x] Install Claude Code with the official setup method during image build.
-- [ ] Set the image default behavior to start Claude Code directly instead of opening a shell.
+- [x] Verify the Claude Code installation during image build with `which claude` and `claude --version`.
+- [x] Set the image default behavior to start Claude Code directly instead of opening a shell.
 - [ ] Make the image compatible with running under `--user $(id -u):$(id -g)`.
 - [ ] Make the runtime working directory match the bind-mounted project path passed with `-w $WORKING_DIR`.
 - [ ] Make the Claude configuration paths inside the container resolve to the fixed in-container home directory path.
