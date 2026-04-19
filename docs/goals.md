@@ -18,9 +18,11 @@ The container must be run with `--user $(id -u):$(id -g)`. This is a required be
 
 The project working directory shall be bind-mounted into the container at the same absolute path that it uses on the host system. The goal is for Claude Code to observe and record the real host paths rather than rewritten container-only paths such as `/workspace`. This is required because Claude-related configuration may keep path-based records, and those records should stay understandable and stable when inspected from the host.
 
-For the first version, it is acceptable to use a fixed in-container username and home directory rather than support arbitrary usernames and home paths across different host systems. However, the runtime user id and group id should still come from `--user $(id -u):$(id -g)` instead of being fixed in the image.
+For the first version, the image does not need to create a real in-container user account. It is acceptable to use a fixed in-container home directory path for Claude Code configuration while running the container with `--user $(id -u):$(id -g)`.
 
-The Claude Code configuration paths inside the container should also be fixed for simplicity. Both `~/.claude` and `~/.claude.json` shall be made available at their expected locations under the fixed in-container home directory.
+The fixed in-container home directory is a path convention for Claude Code configuration, not a guarantee that the runtime user identity exists as a named user inside the image.
+
+The Claude Code configuration paths inside the container should also be fixed for simplicity. Both `~/.claude` and `~/.claude.json` shall be made available at their expected locations under the fixed in-container home directory path.
 
 In this project, “isolated environment” means Claude Code should only be able to access files that are intentionally exposed to the container through bind mounts. The purpose is to reduce the impact of malicious or unsafe commands by limiting the visible filesystem scope to the specific project directory and required Claude configuration paths, rather than exposing broad host locations such as the full home directory or the host root filesystem.
 
