@@ -12,13 +12,17 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      BASE_IMAGE: ghcr.io/${{ github.repository_owner }}/claude-code-image-base
       CONTAINER_HOME: /home/claude
       RUNTIME_IMAGE: claude-code-image:ci
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Derive image names
+        run: |
+          owner="${GITHUB_REPOSITORY_OWNER,,}"
+          echo "BASE_IMAGE=ghcr.io/${owner}/claude-code-image-base" >> "$GITHUB_ENV"
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
