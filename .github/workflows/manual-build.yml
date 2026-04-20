@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      CONTAINER_HOME: /home/claude
+      USERNAME: claude
+      UID: 1000
+      GID: 1000
       RUNTIME_IMAGE: claude-code-image:ci
 
     steps:
@@ -37,19 +39,21 @@ jobs:
       - name: Push shared base image
         run: docker push "$BASE_IMAGE"
 
+      - name: Check Claude as root in shared base image
+        run: |
+          docker run --rm "$BASE_IMAGE" which claude
+          docker run --rm "$BASE_IMAGE" claude --version
+
       - name: Build user-facing image
         run: |
           docker build \
             --build-arg BASE_IMAGE="$BASE_IMAGE" \
-            --build-arg CONTAINER_HOME="$CONTAINER_HOME" \
+            --build-arg USERNAME="$USERNAME" \
+            --build-arg UID="$UID" \
+            --build-arg GID="$GID" \
             -t "$RUNTIME_IMAGE" .
 
-      - name: Check Claude on build default user
+      - name: Check Claude as configured non-root user
         run: |
           docker run --rm "$RUNTIME_IMAGE" which claude
           docker run --rm "$RUNTIME_IMAGE" claude --version
-
-      - name: Check Claude with host-style UID and GID
-        run: |
-          docker run --rm --user 1001:1001 "$RUNTIME_IMAGE" which claude
-          docker run --rm --user 1001:1001 "$RUNTIME_IMAGE" claude --version

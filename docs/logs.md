@@ -24,3 +24,6 @@
 [20260419 14:29:00] Split the committed Dockerfiles into Dockerfile.base for the shared Claude image and a thin template Dockerfile that consumes a configurable base image.
 [20260419 15:16:00] Updated the shared base-image goals to describe the working global claude wrapper layout and shared launcher behavior.
 [20260419 15:19:00] Marked the GHCR publishing task complete after the shared base image was built and pushed successfully from CI.
+[20260420 11:06:00] Stabilized the user-facing Dockerfile around USERNAME/UID/GID host mirroring with a real in-container user and ~/.local/bin/claude.
+[20260420 11:07:00] Synchronized the manual GitHub Actions workflow with the current two-image build flow and the user-facing Dockerfile arguments.
+[20260420 11:08:00] Updated docs/goals.md and docs/tasks.md to match the stable shared base image and user-facing image design; README.md remains the last open task.

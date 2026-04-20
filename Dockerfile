@@ -1,11 +1,26 @@
 ARG BASE_IMAGE
 FROM ${BASE_IMAGE}
 
-ARG CONTAINER_HOME=/home/claude
+ARG USERNAME=claude
+ARG UID=1000
+ARG GID=1000
 
-# Keep this fixed path aligned with the in-container config mount target.
-ENV HOME=${CONTAINER_HOME}
+ENV USER=${USERNAME}
+ENV HOME=/home/${USERNAME}
+ENV PATH=${HOME}/.local/bin:${PATH}
 
-RUN mkdir -p "$HOME"
+RUN groupadd --gid "${GID}" "${USERNAME}" \
+  && useradd \
+    --uid "${UID}" \
+    --gid "${GID}" \
+    --create-home \
+    --home-dir "${HOME}" \
+    --shell /bin/bash \
+    "${USERNAME}" \
+  && mkdir -p "${HOME}/.local/bin" \
+  && ln -sf /usr/local/bin/claude "${HOME}/.local/bin/claude" \
+  && chown -R "${UID}:${GID}" "${HOME}"
+
+USER ${USERNAME}
 
 CMD ["claude"]

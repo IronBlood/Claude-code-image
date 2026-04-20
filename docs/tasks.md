@@ -22,18 +22,13 @@
 - [x] Add a dedicated Dockerfile for the shared base image and move the shared installation steps into it.
 - [x] Add or update CI to build the shared base image and publish it to GHCR.
 
-### User Image Template
+### User-Facing Image
 
-- [x] Add a committed user-image template Dockerfile that builds on the published shared base image.
-- [x] Document or encode the base-image reference in the user-image template so it can be adjusted per user.
-
-### Private User-Specific Runtime Image
-
-- [ ] Create the private user-facing Dockerfile from the committed template.
-- [ ] Make the private user-facing Dockerfile use the published shared base image.
-- [ ] Set a fixed in-container home directory path and export it as `HOME` in the private user-facing image.
-- [ ] Ensure the fixed in-container home directory path exists without requiring a real in-container user account.
-- [ ] Set the final user-facing image default behavior to start Claude Code directly instead of opening a shell.
-- [ ] Make the image compatible with running under `--user $(id -u):$(id -g)`.
-- [ ] Make the runtime working directory match the bind-mounted project path passed with `-w $WORKING_DIR`.
-- [ ] Make the Claude configuration paths inside the container resolve to the fixed in-container home directory path.
+- [x] Add a committed user-facing Dockerfile that builds on the published shared base image.
+- [x] Document or encode the base-image reference in the user-facing Dockerfile so it can be adjusted per user.
+- [x] Create a real in-container user from `USERNAME`, `UID`, and `GID`.
+- [x] Create the matching home directory for the configured in-container user.
+- [x] Link `claude` under `${HOME}/.local/bin` and add that path to `PATH`.
+- [x] Set the final user-facing image default behavior to start Claude Code as the created user instead of opening a shell.
+- [x] Build the user-facing image with host-matching `USERNAME`, `UID`, and `GID` values so files created in bind-mounted directories remain owned by the host user.
+- [ ] Write `README.md` as the end-user manual for building and running the shared base image and the user-facing image.
