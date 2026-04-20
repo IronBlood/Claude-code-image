@@ -28,3 +28,4 @@
 [20260420 11:07:00] Synchronized the manual GitHub Actions workflow with the current two-image build flow and the user-facing Dockerfile arguments.
 [20260420 11:08:00] Updated docs/goals.md and docs/tasks.md to match the stable shared base image and user-facing image design; README.md remains the last open task.
 [20260420 11:24:00] Drafted README.md as the end-user manual and marked the final remaining task complete.
+[20260420 11:42:00] Refined README.md into the final user manual structure: motivation, two-image overview, staged runtime examples, notes, and troubleshooting.

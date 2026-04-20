@@ -2,7 +2,13 @@
 
 This repository provides a two-image setup for running Claude Code in a container while keeping file ownership aligned with the host user.
 
-## Images
+## Why use this?
+
+Claude Code can be paired with third-party gateways or local model backends, but in those setups the safety properties are not always guaranteed. Running Claude Code inside Docker helps limit the visible filesystem scope to the paths you intentionally mount into the container.
+
+Docker alone is not enough, because the default `root` runtime often causes files created or modified in bind-mounted directories to become owned by `root` on the host. This project solves that by building a user-facing image that mirrors the target host user through `USERNAME`, `UID`, and `GID`.
+
+## How It Works
 
 ### Shared base image
 
@@ -127,8 +133,11 @@ docker run --rm -it \
 
 ## Notes
 
-- The user-facing image is built to mirror the target host user through `USERNAME`, `UID`, and `GID`. You do not normally need to pass `--user` at `docker run` time.
-- The workspace should be mounted into the container at the same absolute path it uses on the host.
-- Claude configuration should be mounted into the created user's home directory.
+- **Persistent config**: mount `~/.claude` and `~/.claude.json` into the created user's home directory so Claude keeps its login session and preferences across runs.
+- **Working directory**: mount the workspace at the same absolute path inside the container as it uses on the host. This keeps path references consistent between the host and the container.
+- **Updates**: Claude auto-updates are disabled in the shared base image. To update Claude Code, pull or rebuild the shared base image and then rebuild the user-facing image.
+
+## Troubleshooting
+
 - If your model backend is not reachable from inside the container, verify the value of `ANTHROPIC_BASE_URL` from inside the container first:
   `docker run --rm -e ANTHROPIC_BASE_URL=http://host-or-gateway:port -e ANTHROPIC_AUTH_TOKEN=your-token claude-code-image:local sh -lc 'echo "$ANTHROPIC_BASE_URL"; echo "$ANTHROPIC_AUTH_TOKEN"'`
