@@ -27,3 +27,4 @@
 [20260420 11:06:00] Stabilized the user-facing Dockerfile around USERNAME/UID/GID host mirroring with a real in-container user and ~/.local/bin/claude.
 [20260420 11:07:00] Synchronized the manual GitHub Actions workflow with the current two-image build flow and the user-facing Dockerfile arguments.
 [20260420 11:08:00] Updated docs/goals.md and docs/tasks.md to match the stable shared base image and user-facing image design; README.md remains the last open task.
+[20260420 11:24:00] Drafted README.md as the end-user manual and marked the final remaining task complete.

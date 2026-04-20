@@ -31,4 +31,4 @@
 - [x] Link `claude` under `${HOME}/.local/bin` and add that path to `PATH`.
 - [x] Set the final user-facing image default behavior to start Claude Code as the created user instead of opening a shell.
 - [x] Build the user-facing image with host-matching `USERNAME`, `UID`, and `GID` values so files created in bind-mounted directories remain owned by the host user.
-- [ ] Write `README.md` as the end-user manual for building and running the shared base image and the user-facing image.
+- [x] Write `README.md` as the end-user manual for building and running the shared base image and the user-facing image.
